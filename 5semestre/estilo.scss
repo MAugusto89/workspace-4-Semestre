@@ -1,0 +1,82 @@
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$font-size-base: 16px;
+
+body {
+    font-size: $font-size-base;
+    background-color: $secondary-color;
+}
+
+h1 {
+    color: $primary-color;
+}
+nav {
+    background-color: #333;
+
+    ul {
+        list-style: none;
+
+        li {
+            display: inline-block;
+        a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+@mixin button-style($color) {
+    padding: 10px 20px;
+    background-color: $color;
+    border: none;
+    color: white;
+}
+.button {
+    @include button-style(#3498db);
+}
+.base-button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button {
+    @extend %base-button;
+    background-color: #3498db;
+    color: white;
+}
+
+.button-danger {
+    @extend .base-button;
+    background-color: red;
+    color: white;
+}
+
+.button {
+    padding: 10px;
+    background-color: $primary-color;
+}
+
+// style.scss
+@import 'buttons';
+$color: #3498db;
+
+body {
+    background-color: lighten($color, 20%);
+    color: darken($color, 20%);
+}
+@mixin theme($is-dark) {
+    @if $is-dark {
+        background-color: black;
+        color: white;
+    }
+
+    @else {
+        background-color: white;
+        color: black;
+    }
+}
+
+body {
+    @include theme(true); // Aplica tema escuro
+}
